@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "7ce8fbd0-717a-41bf-a86b-a1460dc68923",
+		"name": "Mascotas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario de la Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"username\", res.username);",
+							"console.log(res.username);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"nipets\",\n    \"password\": \"admin\",\n    \"role\": \"admin\",\n    \"nombre\": \"Sara\",\n    \"documento\": 12345678,\n    \"telefono\": 123456789,\n    \"correo\": \"s.@a.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un chip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"chip\", res.id);",
+							"console.log(res.id);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numeroId\": \"100023022\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/chips",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"mascota\", res.id);",
+							"console.log(res.id);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Raul\",\n    \"raza\":\"Gato\",\n    \"edad\":2,\n    \"comentarios\":\"Esta gordo\",\n    \"UserUsername\": \"{{username}}\",\n    \"ChipId\": {{chip}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/mascotas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"mascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Pancho\",\n    \"raza\":\"Gato\",\n    \"edad\":7,\n    \"comentarios\":\"Esta Flaco\",\n    \"UserUsername\": \"{{username}}\",\n    \"ChipId\": {{chip}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/mascotas/{{mascota}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"mascotas",
+						"{{mascota}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/mascotas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"mascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get una Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/mascotas/{{mascota}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"mascotas",
+						"{{mascota}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/mascotas/{{mascota}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"mascotas",
+						"{{mascota}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un chip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El chip se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/chips/{{chip}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips",
+						"{{chip}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/users/{{username}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "numeroId",
+			"value": ""
+		},
+		{
+			"key": "chip",
+			"value": ""
+		},
+		{
+			"key": "mascota",
+			"value": ""
+		}
+	]
+}

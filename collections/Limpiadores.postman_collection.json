@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "8d47fbb0-dfd0-4618-8c51-4265727ee660",
+		"name": "Limpiadores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear TiendaMascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idTiendaMascota\", res.id);",
+							"tests[\"La tiendaMascota se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\":\"Tienda Dover calle 127\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/tiendasMascotas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiendasMascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Limpiador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"usernameLimpiador\", res.username);",
+							"tests[\"El limpiador se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"a.triana\",\n    \"nombre\": \"Santiago Triana\",\n    \"password\": \"SantiagoElMejor123\",\n    \"documento\": \"1001168176\",\n    \"telefono\": \"3153511111\",\n    \"correo\": \"a.trianaa@uniandes.edu.co\",\n    \"codigoProfesionalVerificado\": \"12341\",\n    \"idTiendaMascotas\": {{idTiendaMascota}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/limpiadores",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Todos los limpiadores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"a.triana\",\n    \"nombre\": \"Santiago Triana\",\n    \"password\": \"SantiagoElMejor123\",\n    \"documento\": \"1001168176\",\n    \"telefono\": \"3153511111\",\n    \"correo\": \"a.trianaa@uniandes.edu.co\",\n    \"codigoProfesionalVerificado\": \"12341\",\n    \"idTiendaMascotas\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/limpiadores",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener limpiador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"documentoLimpiador\", res.documento);",
+							"tests[\"El limpiador se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/limpiadores/{{usernameLimpiador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores",
+						"{{usernameLimpiador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Realizar Login a Limpiador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"tokenLimpiador\", res.token);",
+							"tests[\"el login se realizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"a.triana\",\n    \"password\":\"SantiagoElMejor123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/limpiadores/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Limpiador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El limpiador se actualizo\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"username\":\"a.triana\",\n        \"nombre\": \"Santiago Triana\",\n        \"password\": \"SantiagoElMejor123\",\n        \"documento\": 1001168174,\n        \"telefono\": 3153511111,\n        \"correo\": \"a.trianaa@uniandes.edu.co\",\n        \"codigoProfesionalVerificado\": 12341,\n        \"idTiendaMascotas\": {{idTiendaMascota}}\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/limpiadores/{{usernameLimpiador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores",
+						"{{usernameLimpiador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Limpiador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El limpiador se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/limpiadores/{{usernameLimpiador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"limpiadores",
+						"{{usernameLimpiador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar TiendaMascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El limpiador se obtuvo correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/tiendasMascotas/{{idTiendaMascota}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiendasMascotas",
+						"{{idTiendaMascota}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "idTiendaMascota",
+			"value": ""
+		},
+		{
+			"key": "usernameLimpiador",
+			"value": ""
+		},
+		{
+			"key": "documentoLimpiador",
+			"value": ""
+		},
+		{
+			"key": "tokenLimpiador",
+			"value": ""
+		}
+	]
+}

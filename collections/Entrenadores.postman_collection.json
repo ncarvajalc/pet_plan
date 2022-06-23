@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "9e54631c-08a6-45d4-b2ae-ce5a614615c4",
+		"name": "Entrenadores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"tiendaId\", res.id);\r",
+							"tests[\"La tienda se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"PetCare 170\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/tiendasMascotas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiendasMascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"entrenador\", res.username);\r",
+							"tests[\"La tienda se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ce.figueredo\",\r\n    \"password\": \"equisde\",\r\n    \"name\": \"Carl\",\r\n    \"documento\": \"20406080\",\r\n    \"telefono\": \"3124455065\",\r\n    \"correo\": \"ce.figueredo@uniandes.edu.co\",\r\n    \"codigoProfesionalVerificado\": \"222333\",\r\n    \"idTiendaMascotas\": {{tiendaId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/entrenadores",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"entrenadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tienda se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/entrenadores/{{entrenador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"entrenadores",
+						"{{entrenador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos los entrenadores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Los entrenadores se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/entrenadores",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"entrenadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El entrenador se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ce.figueredo\",\r\n    \"password\": \"equisde\",\r\n    \"name\": \"Polo\",\r\n    \"documento\": \"1020304050\",\r\n    \"telefono\": \"3155558618\",\r\n    \"correo\": \"davidcas315@gmail.com\",\r\n    \"codigoProfesionalVerificado\": \"111222\",\r\n    \"idTiendaMascotas\": {{tiendaId}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/entrenadores/{{entrenador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"entrenadores",
+						"{{entrenador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tienda se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/entrenadores/{{entrenador}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"entrenadores",
+						"{{entrenador}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Tienda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.unset(\"tiendaId\");\r",
+							"tests[\"La tienda se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/tiendasMascotas/{{tiendaId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tiendasMascotas",
+						"{{tiendaId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "entrenador",
+			"value": ""
+		}
+	]
+}

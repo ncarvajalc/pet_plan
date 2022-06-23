@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Rubik", sans-serif !important;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav .nav-link {
+  border: none;
+}
+
+/* Botones navbar*/
+.navbar-nav .nav-link a {
+  text-decoration: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  color: black;
+  background-color: transparent;
+}
+
+#admin-navbar {
+  background-color: #f2b988;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  background-color: transparent;
+  color: black;
+}
+
+.navbar-nav {
+  margin: 0px 30px;
+  width: 100%;
+}
+
+#admin-navlink {
+  background-color: #f2b988;
+}
+
+#navbarNavAltMarkup .button-purple {
+  background: #5f49af;
+  border-radius: 10px;
+  height: 34px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 12px;
+  margin-top: 0;
+  display: inline-block;
+  margin: 0 5px;
+  margin-left: 0;
+}
+
+#navbarNavAltMarkup {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+#navbarNavAltMarkup .white-font {
+  color: white;
+  font-size: 14px;
+  align-self: center;
+}
+
+#navbarNavAltMarkup .push {
+  padding-bottom: 8px;
+}
+
+#navbarNavAltMarkup .dropdown-menu {
+  border: none;
+}
+
+#navbarNavAltMarkup .link-dropdown {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+#navbarNavAltMarkup .dropdown-item:active {
+  background-color: rgb(192, 192, 192);
+}
+
+@media (min-width: 992px) {
+  #navbarNavAltMarkup .push {
+    margin-left: auto;
+    margin-right: 30px;
+    padding-bottom: 0px;
+  }
+
+  #navbarNavAltMarkup .button-purple {
+    background: #5f49af;
+    border-radius: 10px;
+    height: 34px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0 12px;
+    margin-top: 0;
+    display: inline-block;
+    margin: 0 15px;
+  }
+
+  #navbarNavAltMarkup .dropdown-menu {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+  }
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #f2b988;
+}
+
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+  background-color: #f2b9888a;
+}
+
+#button-morado {
+  background: #5f49af;
+  border-radius: 10px;
+  height: 34px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 12px;
+  margin-top: 0;
+  display: inline-block;
+  margin: 0 5px;
+  margin-left: 0;
+  color: white;
+  font-size: 14px;
+  align-self: center;
+}
+
+#fondo {
+  background-color: #e7e4f2;
+}
+#carrules-botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.fat-footer {
+  background-color: #fcfcf9;
+  padding-bottom: 15px;
+}
+
+.extra-footer {
+  padding-top: 25px;
+}

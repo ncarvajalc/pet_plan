@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "fc0dc146-3b35-43f3-b880-0bd38ff42d7a",
+		"name": "PlanTests",
+		"description": "Prubas del recurso contrato",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un plan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idPlan\", res.id);\r",
+							"tests[\"El plan se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Gold\",\r\n    \"descripcion\": \"Con este plan podras hacer ...\",\r\n    \"precio\": \"20000\",\r\n    \"descuento\": \"25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/planes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planes"
+					]
+				},
+				"description": "Crea un nuevo contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es inicializado por la base de datos y se debe ver en la respuesta.\nPara la prueba, se guarda el id en una variable global que sera utilizada en otras peticiones de la coleccion.\nCodigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los servicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el GET\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/planes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planes"
+					]
+				},
+				"description": "Obtiene todos los contratos existentes. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un plan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idPlan\", res.id);\r",
+							"tests[\"El plan se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/planes/{{idPlan}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planes",
+						"{{idPlan}}"
+					]
+				},
+				"description": "Obtiene un contrato con un id especifico. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Gold\",\r\n    \"descripcion\": \"Con este plan podras hacer ...\",\r\n    \"precio\": \"20000\",\r\n    \"descuento\": \"27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/planes/{{idPlan}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planes",
+						"{{idPlan}}"
+					]
+				},
+				"description": "Modifica un contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/planes/{{idPlan}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"planes",
+						"{{idPlan}}"
+					]
+				},
+				"description": "Borrar un contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 204"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "idServicio",
+			"value": ""
+		},
+		{
+			"key": "idDireccion",
+			"value": ""
+		},
+		{
+			"key": "idPlan",
+			"value": ""
+		}
+	]
+}

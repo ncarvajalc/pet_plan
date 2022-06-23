@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "7b70d616-048b-47da-ae0f-0c7f675a9607",
+		"name": "Tarjetas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario de la tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idUsuario\", res.username);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndyaXRlciIsInJvbGUiOiJ3cml0ZXIiLCJpYXQiOjE2NDcxMzc4MDQsImV4cCI6MTY0NzIyNDIwNH0.Ud-PByz2kjW4eYLVz0c-YUFZpsajXG7MRm3I3DCOwxI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"nipets\",\n    \"password\": \"admin\",\n    \"role\": \"admin\",\n    \"nombre\": \"Sara\",\n    \"documento\": 12345678,\n    \"telefono\": 123456789,\n    \"correo\": \"s.@a.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idTarjeta\", res.id);",
+							"tests[\"La tarjeta se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numero\": 123456789,\n    \"fechaVencimiento\": \"2027-01-01\",\n    \"nombre\": \"Andres Gomez\",\n    \"cvv\": 123,\n    \"UserUsername\": \"nipets\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarjetas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idTarjeta\", res.id);",
+							"tests[\"La tarjeta se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarjetas/{{idTarjeta}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarjetas",
+						"{{idTarjeta}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Las tarjetas se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarjetas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarjetas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tarjeta se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"numero\": \"1234567890\",\n    \"fechaVencimiento\" : \"2027-01-01\",\n    \"nombre\": \"Andres Gomez\",\n    \"cvv\": 344,\n    \"UserUsername\": \"nipets\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarjetas/{{idTarjeta}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarjetas",
+						"{{idTarjeta}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tarjeta se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/tarjetas/{{idTarjeta}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tarjetas",
+						"{{idTarjeta}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar usuario de la tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/{{idUsuario}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{idUsuario}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5pcGV0cyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY1MDUwNTk0OCwiZXhwIjoxNjUwNTkyMzQ4fQ.OOOmvFKV6Su15GsM2Ijbd6ScoeuFJmFe8igaL7LvbaA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "idTarjeta",
+			"value": ""
+		},
+		{
+			"key": "idUsuario",
+			"value": ""
+		}
+	]
+}

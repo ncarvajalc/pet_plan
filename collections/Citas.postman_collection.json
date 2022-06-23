@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "382aaece-1ab7-4351-81c9-c1fcf90ca5c5",
+		"name": "Citas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"tiendaId\", res.id);\r",
+							"tests[\"La tienda se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"PetCare 116\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"username\", res.username);\r",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"pp\",\r\n    \"password\": \"nose\",\r\n    \"role\": \"admin\",\r\n    \"nombre\": \"ralph\",\r\n    \"documento\": \"100185348\",\r\n    \"telefono\": \"3155558618\",\r\n    \"correo\": \"ralph@pp.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/users/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idServicio\", res.id);\r",
+							"tests[\"El servicio se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"entrenamiento\",\r\n    \"descripcion\": \"equisde\",\r\n    \"UserUsername\": \"pp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/servicios",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"servicios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una cita",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idCita\", res.id);\r",
+							"tests[\"La cita se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fechaInicio\": \"2022-03-04\",\r\n    \"duracion\": \"45\",\r\n    \"comentarios\": \"equisde\",\r\n    \"UserUsername\": \"pp\",\r\n    \"idServicio\": {{idServicio}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/citas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"citas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todas las citas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Las citas se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/citas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"citas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar una cita",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idCita\", res.id);\r",
+							"tests[\"La cita se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/citas/{{idCita}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"citas",
+						"{{idCita}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una cita",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La cita se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fechaInicio\": \"2022-03-07\",\r\n    \"duracion\": \"65\",\r\n    \"comentarios\": \"equisdont\",\r\n    \"UserUsername\": \"pp\",\r\n    \"idServicio\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/citas/{{idCita}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"citas",
+						"{{idCita}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una cita",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La cita se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/citas/{{idCita}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"citas",
+						"{{idCita}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El servicio se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/servicios/{{idServicio}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/users/{{username}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"users",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar tienda",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.unset(\"tiendaId\");\r",
+							"tests[\"La tienda se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas/{{tiendaId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas",
+						"{{tiendaId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": ""
+		},
+		{
+			"key": "idServicio",
+			"value": ""
+		},
+		{
+			"key": "idCita",
+			"value": ""
+		}
+	]
+}

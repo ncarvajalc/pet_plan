@@ -1,0 +1,55 @@
+.title {
+  margin: 50px 0;
+  font-weight: 400;
+  font-size: 35px;
+  text-align: center;
+  font-size: 50px;
+}
+.bg-orange {
+  background-color: #f2b988;
+  padding: 5vw;
+  margin-bottom: 50px;
+}
+
+.font {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.button-purple-login {
+  background: #5f49af;
+  border-radius: 10px;
+  height: 34px;
+  width: 100%;
+  border: none;
+  padding: 0 12px;
+  margin-top: 25px;
+}
+
+.white-font {
+  color: white;
+  font-size: 20px;
+}
+
+.husky {
+  margin: 2vh 0;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 992px) {
+  .husky {
+    margin: 14vh 0;
+  }
+
+  .bg-orange {
+    margin-bottom: 0;
+  }
+}

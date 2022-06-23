@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "3f024c2d-2f3d-4c10-965d-d7e6b74bf2d6",
+		"name": "Reseñas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"usernameUsuario\", res.username);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"santiagotri\",\n    \"password\": \"contrasena123\",\n    \"role\": \"admin\",\n    \"nombre\": \"Santiago\",\n    \"documento\": 12345678,\n    \"telefono\": 123456789,\n    \"correo\": \"santiago@hotmail.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idServicio\", res.id);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"UserUsername\": \"santiagotri\",\n    \"descripcion\": \"Un baño relajante para tu perro\",\n    \"tipo\":\"Aseo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear reseña",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idResena\", res.id);",
+							"tests[\"La resena se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"puntuacion\" : 5,\n    \"comentario\" : \"Me gusto mucho, mi perro quedó genial. Lo recomiendo a toda costa.\",\n    \"fecha\": \"23-01-2022 16:30:22 -00:00\",\n    \"usernameUsuario\": \"santiagotri\",\n    \"idServicio\":{{idServicio}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/resenas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Reseñas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Las reseñas se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/resenas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Reseña por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"tests[\"La reseña se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/resenas/{{idResena}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas",
+						"{{idResena}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar reseña por ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La reseña se actualizo\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"puntuacion\" : 3,\n    \"comentario\" : \"Me gusto mucho, mi perro quedó genial. Lo recomiendo a toda costa.\",\n    \"fecha\": \"23-01-2022 16:30:22 -00:00\",\n    \"usernameUsuario\": \"santiagotri\",\n    \"idServicio\":{{idServicio}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/resenas/{{idResena}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas",
+						"{{idResena}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar cambios en Reseña por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"tests[\"La reseña se actualizo\"] = res.puntuacion === 3;",
+							"tests[\"La reseña se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/resenas/{{idResena}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas",
+						"{{idResena}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Reseña",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La reseña se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/resenas/{{idResena}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resenas",
+						"{{idResena}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Elimina Servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El servicio se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/servicios/{{idServicio}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se elimino correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/{{usernameUsuario}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{usernameUsuario}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "usernameUsuario",
+			"value": ""
+		},
+		{
+			"key": "idResena",
+			"value": ""
+		},
+		{
+			"key": "idServicio",
+			"value": ""
+		}
+	]
+}

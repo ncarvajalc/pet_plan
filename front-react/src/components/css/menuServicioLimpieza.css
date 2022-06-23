@@ -1,0 +1,129 @@
+.barra-tipos-servicios {
+  background-color: #f2b988;
+  text-align: center;
+  min-height: 52px;
+}
+
+il {
+  margin: 5%;
+  margin-top: 10px;
+}
+
+.contenedor-botones {
+  width: 40%;
+}
+
+.boton-seleccionado {
+  background: #5f49af;
+  border-radius: 10px;
+  width: 105px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+.texto-boton-seleccionado {
+  /* Button */
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  /* identical to box height, or 162% */
+
+  text-align: center;
+
+  /* Button text */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+
+.texto-boton {
+  /* Body 2 */
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 113% */
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.fondo-menu {
+  background-color: #e7e4f2;
+  text-align: center;
+  overflow: auto;
+  width: 100%;
+  height: 100vh;
+  background-color: #e7e4f2;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.fila-menu {
+  margin-top: 10%;
+}
+
+.columna-menu {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.icono.menu {
+  padding: 2rem;
+  border-radius: 25px;
+  background-color: #9488bf;
+  margin-top: 20%;
+}
+
+.boton-contratar-limpieza {
+  width: 296px;
+  height: 78px;
+  background: #5f49af;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.boton-mis-limpiezas {
+  width: 296px;
+  height: 78px;
+  background: #9488bf;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.texto-botones {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 22px;
+  /* identical to box height, or 92% */
+  text-align: center;
+
+  /* Button text */
+
+  color: #ffffff;
+  margin-top: 26px;
+}
+
+.imagen-servicio {
+  max-height: 200px;
+  margin-bottom: 30px;
+  text-align: center;
+}

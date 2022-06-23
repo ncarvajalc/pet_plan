@@ -1,0 +1,137 @@
+.barra-tipos-servicios {
+  background-color: #f2b988;
+  text-align: center;
+  min-height: 52px;
+}
+
+il {
+  margin: 5%;
+  margin-top: 10px;
+}
+
+.contenedor-botones {
+  width: 40%;
+}
+
+.boton-seleccionado {
+  background: #5f49af;
+  border-radius: 10px;
+  width: 105px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+.texto-boton-seleccionado {
+  /* Button */
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  /* identical to box height, or 162% */
+
+  text-align: center;
+
+  /* Button text */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+
+.texto-boton {
+  /* Body 2 */
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 113% */
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.cuadro-fondo {
+  background-color: #e7e4f2;
+  text-align: center;
+  overflow: auto;
+  width: 100%;
+  height: 100vh;
+  background-color: #e7e4f2;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tabla-lista-limpiezas {
+  background: #f2b988;
+  margin: 2%;
+  text-align: center;
+}
+
+.texto-titulo-lista {
+  /* Heading 4 */
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 60px;
+  text-align: left;
+  margin-left: 2%;
+  /* or 158% */
+
+  color: #000000;
+}
+
+.row-botones {
+  text-align: center;
+  margin-right: 1%;
+}
+
+.boton-cancelar {
+  background: #e7e4f2;
+  border-radius: 10px;
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 113% */
+
+  text-align: center;
+
+  color: #c4c4c4;
+}
+
+.boton-reagendar {
+  background: #5f49af;
+  border-radius: 10px;
+
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 113% */
+
+  text-align: center;
+
+  /* Button text */
+
+  color: #ffffff;
+}
+
+.btn-morado {
+  color: #fff;
+  background-color: #5f49af;
+}

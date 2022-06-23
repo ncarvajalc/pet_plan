@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "7604222c-552a-4147-a3b9-0d05891fa355",
+		"name": "Facturas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"username\", res.username);",
+							"tests[\"El usuario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"nipets\",\n    \"password\": \"admin\",\n    \"role\": \"admin\",\n    \"nombre\": \"Sara\",\n    \"documento\": 12345678,\n    \"telefono\": 123456789,\n    \"correo\": \"s.@a.com\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear servicio de la factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idServicio\", res.id);",
+							"tests[\"El servicio se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipo\": \"Peluquería\",\n    \"descripcion\": \"Quiero que dejen con el pelo largo a Lulú, solo despuntar\",\n    \"UserUsername\": \"nipets\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idFactura\", res.id);",
+							"tests[\"La factura se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nit\": \"1234567890\",\n    \"fecha\" : \"2022-03-15\",\n    \"nombreFacturante\": \"Tienda 1\",\n    \"valor\": 32000,\n    \"descuento\": 0,\n    \"impuesto\": 0.19,\n    \"total\": 38080,\n    \"cufe\": \"qwertyuiopasdfghjklzxcvbnm\",\n    \"UserUsername\": \"nipets\",\n    \"servicioId\": {{idServicio}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"facturas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"idFactura\", res.id);",
+							"tests[\"La factura se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/facturas/{{idFactura}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"facturas",
+						"{{idFactura}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener facturas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Las facturas se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/facturas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"facturas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La factura se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nit\": \"1234567890\",\n    \"fecha\" : \"2021-01-01\",\n    \"nombreFacturante\": \"Tienda 2\",\n    \"valor\": 32000,\n    \"descuento\": 0,\n    \"impuesto\": 0.19,\n    \"total\": 38080,\n    \"cufe\": \"qwertyuiopasdfghjklzxxxxx\",\n    \"UserUsername\": \"nipets\",\n    \"servicioId\": {{idServicio}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/facturas/{{idFactura}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"facturas",
+						"{{idFactura}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar factura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La factura se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/facturas/{{idFactura}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"facturas",
+						"{{idFactura}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/servicios/{{idServicio}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El usuario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/{{username}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "idDireccion",
+			"value": ""
+		},
+		{
+			"key": "idFactura",
+			"value": ""
+		},
+		{
+			"key": "idServicio",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": ""
+		}
+	]
+}

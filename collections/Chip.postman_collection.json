@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "d7aa5cac-0ae4-475a-a035-1d9ef409baeb",
+		"name": "Chip",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"id_tienda\", res.id);\r",
+							"tests[\"La tienda se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"PetCare 170\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un chips",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"chip\", res.chip);\r",
+							"tests[\"El chip se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroId\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/chips",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos los chips",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Los chips se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/chips",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar un chip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El chip se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3001/chips/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un chip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El chip se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroId\":\"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/chips/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un chip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El chip se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/chips/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"chips",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tienda se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas/{{id_tienda}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas",
+						"{{id_tienda}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "id_tienda",
+			"value": ""
+		},
+		{
+			"key": "chip",
+			"value": ""
+		}
+	]
+}

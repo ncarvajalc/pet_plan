@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "bd849069-26c7-4247-be8f-a6768521d2ac",
+		"name": "ServicioTests",
+		"description": "Prubas del recurso contrato",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_c\", data.username);\r",
+							"tests[\"No hay errores en el POST\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"s.plazas\",\r\n    \"password\": \"hola\",\r\n    \"nombre\": \"Sara\",\r\n    \"role\": \"admin\",\r\n    \"documento\" : \"5678\",\r\n    \"telefono\": \"1234\",\r\n    \"correo\": \"s.plazas@uniandes.edu.co\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"signup"
+					]
+				},
+				"description": "Crea un nuevo contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es inicializado por la base de datos y se debe ver en la respuesta.\nPara la prueba, se guarda el id en una variable global que sera utilizada en otras peticiones de la coleccion.\nCodigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idServicio\", res.id);\r",
+							"tests[\"El servicio se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"veterinaria\",\r\n    \"descripcion\": \"abc\",\r\n    \"UserUsername\": \"s.plazas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios"
+					]
+				},
+				"description": "Crea un nuevo contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es inicializado por la base de datos y se debe ver en la respuesta.\nPara la prueba, se guarda el id en una variable global que sera utilizada en otras peticiones de la coleccion.\nCodigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los servicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el GET\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/servicios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						""
+					]
+				},
+				"description": "Obtiene todos los contratos existentes. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"idServicio\", res.id);\r",
+							"tests[\"El servicio se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/servicios/{{idServicio}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				},
+				"description": "Obtiene un contrato con un id especifico. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el PUT\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"veterinaria\",\r\n    \"descripcion\": \"Nueva descripcion\",\r\n    \"UserUsername\": \"s.plazas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/servicios/{{idServicio}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				},
+				"description": "Modifica un contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un servicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/servicios/{{idServicio}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"servicios",
+						"{{idServicio}}"
+					]
+				},
+				"description": "Borrar un contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No hay errores en el DELETE\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/{{new_id_c}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{new_id_c}}"
+					]
+				},
+				"description": "Borrar un contrato. El recurso tiene los atributos \"costo\", \"numeroHoras\" y \"medioPago\". El id es la variable global que se declara al crear un contrato. Codigo http esperado: 204"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "idServicio",
+			"value": ""
+		},
+		{
+			"key": "idDireccion",
+			"value": ""
+		}
+	]
+}

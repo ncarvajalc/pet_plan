@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "905040fc-7d7f-48ed-a93d-490e5753178a",
+		"name": "Veterinario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"tiendaId\", res.id);\r",
+							"tests[\"La tienda se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"PetCare 170\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un veterinario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = JSON.parse(responseBody);\r",
+							"pm.collectionVariables.set(\"veterinario\", res.username);\r",
+							"tests[\"El veterinario se creó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"ce.figueredo\",\r\n    \"password\": \"equisde\",\r\n    \"name\": \"Carl\",\r\n    \"documento\": \"20406080\",\r\n    \"telefono\": \"3124455065\",\r\n    \"correo\": \"ce.figueredo@uniandes.edu.co\",\r\n    \"codigoProfesionalVerificado\": \"222333\",\r\n    \"idTiendaMascotas\": {{tiendaId}}\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/veterinarios",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"veterinarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar todos los veterinarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Los veterinarios se obtuvieron correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/veterinarios",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"veterinarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar un veterinario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El veterinario se obtuvo correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3001/veterinarios/{{veterinario}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"veterinarios",
+						"{{veterinario}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Veterinario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El veterinario se actualizó correctamente\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"d.alvarezp\",\r\n    \"password\": \"equisde\",\r\n    \"name\": \"Polo\",\r\n    \"documento\": \"1020304050\",\r\n    \"telefono\": \"3155558618\",\r\n    \"correo\": \"davidcas315@gmail.com\",\r\n    \"codigoProfesionalVerificado\": \"111222\",\r\n    \"idTiendaMascotas\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/veterinarios/{{veterinario}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"veterinarios",
+						"{{veterinario}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un veterinario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"El veterinario se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/veterinarios/d.alvarezp",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"veterinarios",
+						"d.alvarezp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una tienda de mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"La tienda se eliminó correctamente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3001/tiendasMascotas/{{id_tienda}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"tiendasMascotas",
+						"{{id_tienda}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "veterinario",
+			"value": "ce.figueredo"
+		},
+		{
+			"key": "veterinario",
+			"value": ""
+		},
+		{
+			"key": "tiendaId",
+			"value": ""
+		},
+		{
+			"key": "veterinaruio",
+			"value": ""
+		}
+	]
+}

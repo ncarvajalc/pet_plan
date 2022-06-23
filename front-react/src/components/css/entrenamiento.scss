@@ -1,0 +1,33 @@
+.contenedor-entrenamiento {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 95px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #e7e4f2;
+  padding: 5vh;
+  gap: 1.2rem;
+  .img {
+    border-radius: 26px;
+    overflow: hidden;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 60%;
+    text-align: center;
+  }
+  .botones {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+  }
+  .btn-morado {
+    color: #fff;
+    background-color: #5f49af;
+  }
+}

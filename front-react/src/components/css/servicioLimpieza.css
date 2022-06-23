@@ -1,0 +1,159 @@
+.barra-tipos-servicios {
+  background-color: #f2b988;
+  text-align: center;
+  min-height: 52px;
+  width: 100%;
+}
+
+il {
+  margin: 5%;
+  margin-top: 10px;
+}
+
+.contenedor-botones {
+  width: 40%;
+}
+
+.boton-seleccionado {
+  background: #5f49af;
+  border-radius: 10px;
+  width: 105px;
+  height: 34px;
+  margin-top: 10px;
+}
+
+.texto-boton-seleccionado {
+  /* Button */
+  text-decoration: none;
+  color: inherit;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  /* identical to box height, or 162% */
+
+  text-align: center;
+
+  /* Button text */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 10px;
+}
+
+.texto-boton {
+  /* Body 2 */
+  text-decoration: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 113% */
+
+  text-align: center;
+  color: inherit;
+  color: #000000;
+}
+
+.cuadro-servicio {
+  background: #9488bf;
+  border-radius: 11px;
+  margin: 10%;
+  width: 70%;
+  min-height: 279px;
+  overflow: auto;
+  text-align: center;
+}
+
+.cuadro-servicio-seleccionado {
+  background: #9488bf;
+  border: 10px solid #f29727;
+  box-sizing: border-box;
+  border-radius: 11px;
+  margin: 10%;
+  width: 70%;
+  min-height: 279px;
+  overflow: auto;
+
+  text-align: center;
+}
+
+.titulo-servicio {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 35px;
+  /* or 57% */
+  text-align: center;
+  color: #ffffff;
+  margin-top: 52px;
+}
+
+.precio-servicio {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 20px;
+  /* or 67% */
+  text-align: center;
+  color: #ffffff;
+  margin-top: 40px;
+}
+
+.imagen-cuadro-servicio {
+  max-height: 64px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.cuadro-formulario {
+  background: #f2b988;
+  text-align: center;
+  overflow: auto;
+  min-height: 198px;
+}
+
+.texto-total-a-pagar {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 36px;
+  text-align: center;
+  margin-top: 20px;
+  color: #000000;
+}
+
+.texto-login-requerido {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 40px;
+  text-align: center;
+  margin-top: 20px;
+  color: #343434;
+}
+
+.seccion-formulario {
+  margin: 20px;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 20px;
+  /* identical to box height, or 83% */
+
+  text-align: left;
+
+  color: #000000;
+}

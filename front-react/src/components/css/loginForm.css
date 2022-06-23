@@ -1,0 +1,49 @@
+.title {
+  font-weight: 400;
+  font-size: 35px;
+}
+
+.register-link {
+  text-decoration: none;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  color: black;
+  border: none;
+  background-color: transparent;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.button-purple-login {
+  background: #5f49af;
+  border-radius: 10px;
+  height: 34px;
+  width: 100%;
+  border: none;
+  padding: 0 12px;
+  margin-top: 25px;
+}
+
+.white-font {
+  color: white;
+  font-size: 20px;
+}
+
+.bg-orange {
+  background-color: rgba(242, 185, 136, 1);
+  font-family: "Rubik";
+  font-style: normal;
+}
+
+.unregistered {
+  margin-top: 25px;
+}
+
+.centered-form {
+  margin: 15vh 0;
+}
